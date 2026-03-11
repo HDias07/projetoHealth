@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Paciente</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Cadastro de Paciente</h1>
+
+<form th:action="@{/pacientes/salvar}" th:object="${paciente}" method="post">
+
+    <input type="hidden" th:field="*{id}" />
+
+    Nome: <input type="text" th:field="*{nome}" />
+    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color:red"></span>
+    <br><br>
+
+    CPF: <input type="text" th:field="*{cpf}" />
+    <span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" style="color:red"></span>
+    <br><br>
+
+    Email: <input type="text" th:field="*{email}" />
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red"></span>
+    <br><br>
+
+    Telefone: <input type="text" th:field="*{telefone}" />
+    <span th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" style="color:red"></span>
+    <br><br>
+
+    <button type="submit">Salvar</button>
+
+</form>
+
+<a th:href="@{/pacientes}">Voltar</a>
+
+</body>
+</html>

@@ -1,13 +1,13 @@
 package com.healthconnect.healthconnect.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class HealthController {
 
-    @GetMapping("/projetoRique")
-    public String hello() {
-        return "Hello Word!";
+    @GetMapping("/")
+    public String home() {
+        return "index"; // certifique-se de ter src/main/resources/templates/index.html
     }
 }
