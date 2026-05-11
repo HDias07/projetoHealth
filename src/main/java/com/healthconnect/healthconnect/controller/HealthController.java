@@ -8,6 +8,6 @@ public class HealthController {
 
     @GetMapping("/")
     public String home() {
-        return "index"; // certifique-se de ter src/main/resources/templates/index.html
+        return "index";
     }
 }

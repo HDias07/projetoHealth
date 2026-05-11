@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Paciente</title>
+    <title>Editar Contato</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -68,7 +68,6 @@
         input:focus { outline: none; border-color: #6abf4b; background-color: #fff; }
 
         .erro { color: #c0392b; font-size: 0.8rem; margin-top: 3px; }
-        .dica { color: #5b6754; font-size: 0.82rem; margin-top: 6px; }
 
         .cep-wrapper { position: relative; }
         .cep-spinner {
@@ -114,36 +113,23 @@
 </header>
 
 <main>
-    <h2 th:text="${paciente.id != null} ? 'Editar paciente' : 'Cadastro de paciente'"></h2>
+    <h2>Editar contato</h2>
     <div class="card">
-        <form th:object="${paciente}" method="post" th:action="@{/pacientes/salvar}">
-            <input type="hidden" th:field="*{id}">
+        <form th:action="@{/pacientes/atualizar-contato/{id}(id=${pacienteId})}"
+              th:object="${contato}" method="post">
 
-            <div class="secao-titulo">Dados pessoais</div>
-
-            <div class="campo">
-                <label for="nome">Nome</label>
-                <input id="nome" type="text" th:field="*{nome}" maxlength="100" placeholder="Nome completo">
-                <div class="erro" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
-            </div>
-
-            <div class="linha">
-                <div class="campo">
-                    <label for="cpf">CPF</label>
-                    <input id="cpf" type="text" th:field="*{cpf}" maxlength="11" placeholder="Somente numeros">
-                    <div class="erro" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></div>
-                </div>
-                <div class="campo">
-                    <label for="telefone">Telefone</label>
-                    <input id="telefone" type="text" th:field="*{telefone}" maxlength="11" placeholder="Somente numeros">
-                    <div class="erro" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
-                </div>
-            </div>
+            <div class="secao-titulo">Contato</div>
 
             <div class="campo">
                 <label for="email">Email</label>
                 <input id="email" type="email" th:field="*{email}" maxlength="100" placeholder="exemplo@email.com">
                 <div class="erro" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+
+            <div class="campo">
+                <label for="telefone">Telefone</label>
+                <input id="telefone" type="text" th:field="*{telefone}" maxlength="11" placeholder="Somente numeros">
+                <div class="erro" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
             </div>
 
             <div class="secao-titulo">Endereco</div>
@@ -156,7 +142,6 @@
                 </div>
                 <div class="erro" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></div>
                 <div class="erro" id="cep-erro"></div>
-                <div class="dica">Ao informar um CEP valido, rua, bairro, cidade e estado podem ser preenchidos automaticamente.</div>
             </div>
 
             <div class="campo">

@@ -1,47 +1,130 @@
 package com.healthconnect.healthconnect.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(name = "uk_paciente_cpf", columnNames = "cpf")
+)
 public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nome obrigatório")
-    @Pattern(regexp = "^[A-Za-zÀ-ú ]+$", message = "Nome não pode conter números")
+    @Column(nullable = false, length = 100)
     private String nome;
 
-    @NotBlank(message = "CPF obrigatório")
-    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 números")
+    @Column(nullable = false, length = 11)
     private String cpf;
 
-    @Email(message = "Email inválido")
-    @NotBlank(message = "Email obrigatório")
+    @Column(nullable = false, length = 100)
     private String email;
 
-    @NotBlank(message = "Telefone obrigatório")
-    @Pattern(regexp = "\\d{10,11}", message = "Telefone deve conter apenas números")
+    @Column(nullable = false, length = 11)
     private String telefone;
 
-    public Paciente() {}
+    @Column(nullable = false, length = 8)
+    private String cep;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    @Column(length = 120)
+    private String rua;
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    @Column(length = 80)
+    private String bairro;
 
-    public String getCpf() { return cpf; }
-    public void setCpf(String cpf) { this.cpf = cpf; }
+    @Column(length = 80)
+    private String cidade;
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    @Column(length = 2)
+    private String estado;
 
-    public String getTelefone() { return telefone; }
-    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public Paciente() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }
